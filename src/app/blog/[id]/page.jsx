@@ -14,22 +14,31 @@ export default async function PostDetail({ params }) {
     const post = await res.json();
 
     return (
-        <div className="p-8 flex flex-col items-center justify-center">
-            <div className="text-2xl font-bold mb-4">
-                Description of post {id}
+        <div className="p-8 flex flex-col items-center justify-center bg-gray-50 min-h-screen">
+            <div className="text-3xl font-extrabold mb-6 text-gray-800">
+                📖 Description of Post {id}
             </div>
-            <Card className="w-full max-w-2xl">
-                <CardHeader>
-                    <CardTitle className="text-2xl font-bold">
+            <Card className="w-full max-w-3xl border border-gray-200 shadow-lg rounded-lg overflow-hidden hover:shadow-2xl transition-shadow duration-300">
+                <CardHeader className="bg-gradient-to-r from-gray-700 via-gray-500 to-gray-400 text-white p-6">
+                    <CardTitle className="text-3xl font-bold">
                         {post.title}
                     </CardTitle>
                 </CardHeader>
-                <CardContent>
-                    <p className="text-gray-700">{post.body}</p>
+                <CardContent className="p-6 bg-white">
+                    <p className="text-lg text-gray-600 leading-relaxed">
+                        {post.body}
+                    </p>
                 </CardContent>
-                <CardFooter className="flex justify-between">
-                    <Button asChild variant="link">
-                        <Link href="/"> ← Back</Link>
+                <CardFooter className="flex justify-between items-center p-6 bg-gray-100 border-t border-gray-200">
+                    <Button
+                        asChild
+                        variant="outline"
+                        className="text-blue-500 hover:bg-blue-50"
+                    >
+                        <Link href="/">← Back</Link>
+                    </Button>
+                    <Button className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">
+                        Share Post
                     </Button>
                 </CardFooter>
             </Card>
