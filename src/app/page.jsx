@@ -1,11 +1,5 @@
-import { Button } from "@/components/ui/button";
-import {
-    Card,
-    CardContent,
-    CardFooter,
-    CardHeader,
-    CardTitle,
-} from "@/components/ui/card";
+import Link from "next/link.js";
+
 export default async function Home() {
     const res = await fetch("https://jsonplaceholder.typicode.com/posts");
     const data = await res.json();
@@ -13,24 +7,19 @@ export default async function Home() {
 
     return (
         <div className="container mx-auto p-4">
-            <h1 className="text-center text-lg my-4 md:text-2xl lg:text-4xl font-semibold">
-                Welcome to My Blog Website!
-            </h1>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+            <h1 className="text-2xl font-bold mb-4 text-center">Blog Posts</h1>
+            <ul>
                 {data.map((post) => (
-                    <Card key={post.id}>
-                        <CardHeader>
-                            <CardTitle>{post.title}</CardTitle>
-                        </CardHeader>
-                        <CardContent>
-                            <p>{post.body}</p>
-                        </CardContent>
-                        <CardFooter>
-                            <Button>Read More</Button>
-                        </CardFooter>
-                    </Card>
+                    <li key={post.id}>
+                        <Link
+                            className="text-lg font-medium"
+                            href={`/blog/${post.id}`}
+                        >
+                            {post.title}
+                        </Link>
+                    </li>
                 ))}
-            </div>
+            </ul>
         </div>
     );
 }
