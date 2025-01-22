@@ -28,11 +28,9 @@ function Navbar() {
                     </li>
                     {isAuthenticated ? (
                         <>
-                            <li className="text-gray-300">
-                                Hello, {getUser()?.given_name || "User"}
-                            </li>
+                            <li>Hello, {getUser()?.given_name || "User"}</li>
                             <li>
-                                <Button>
+                                <Button className="rounded-full">
                                     <LogoutLink>Logout</LogoutLink>
                                 </Button>
                             </li>
