@@ -3,6 +3,7 @@
 import { LoginLink, useKindeAuth } from "@kinde-oss/kinde-auth-nextjs";
 import { useEffect, useState } from "react";
 import Loading from "../../components/Loading.jsx";
+import { Button } from "../../components/ui/button.jsx";
 
 export default function ProfilePage() {
     const { getUser } = useKindeAuth();
@@ -29,18 +30,16 @@ export default function ProfilePage() {
 
     if (!loading && !user) {
         return (
-            <div className="min-h-screen flex items-center justify-center bg-gray-50">
+            <div className="min-h-screen container mx-auto flex items-center justify-center px-2">
                 <div className="p-8 rounded-lg shadow-lg bg-white">
-                    <h1 className="text-2xl font-bold mb-4">
+                    <h1 className="text-xl md:text-2xl font-bold mb-4">
                         You are not logged in!
                     </h1>
-                    <p className="text-gray-600 mb-4">
+                    <p className="text-gray-600 mb-4 text-sm md:text-base">
                         Please log in to access your profile.
                     </p>
                     <LoginLink>
-                        <button className="bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-600">
-                            Log In
-                        </button>
+                        <Button className="rounded-full">Login</Button>
                     </LoginLink>
                 </div>
             </div>
@@ -48,7 +47,7 @@ export default function ProfilePage() {
     }
 
     return (
-        <div className="min-h-screen flex items-center justify-center bg-gray-50">
+        <div className="min-h-screen container mx-auto flex items-center justify-center bg-gray-50">
             <div className="p-8 rounded-lg shadow-lg bg-white">
                 <h1 className="text-3xl font-bold mb-4">
                     Welcome to Your Profile!

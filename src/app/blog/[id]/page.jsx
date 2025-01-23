@@ -37,9 +37,6 @@ export default async function PostDetail({ params }) {
                     >
                         <Link href="/">← Back</Link>
                     </Button>
-                    <Button className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">
-                        Share Post
-                    </Button>
                 </CardFooter>
             </Card>
         </div>

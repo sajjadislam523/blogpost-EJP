@@ -30,7 +30,7 @@ function Navbar() {
                         <>
                             <li>
                                 <Link href="/profile">
-                                    Hello, {getUser()?.given_name || "User"}
+                                    {getUser()?.given_name || "User"}
                                 </Link>
                             </li>
                             <li>
