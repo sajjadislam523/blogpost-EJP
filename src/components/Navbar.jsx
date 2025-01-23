@@ -28,7 +28,11 @@ function Navbar() {
                     </li>
                     {isAuthenticated ? (
                         <>
-                            <li>Hello, {getUser()?.given_name || "User"}</li>
+                            <li>
+                                <Link href="/profile">
+                                    Hello, {getUser()?.given_name || "User"}
+                                </Link>
+                            </li>
                             <li>
                                 <Button className="rounded-full">
                                     <LogoutLink>Logout</LogoutLink>

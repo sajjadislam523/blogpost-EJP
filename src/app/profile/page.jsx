@@ -1,16 +1,23 @@
-import { getKindeServerSession } from "@kinde-oss/kinde-auth-nextjs/server";
-import { useRouter } from "next/router.js";
+"use client";
 
-export default async function ProfilePage() {
-    const { getUser, isAuthenticated } = getKindeServerSession();
-    const user = await getUser();
-    const router = useRouter();
+import { useKindeAuth } from "@kinde-oss/kinde-auth-nextjs";
+import { useEffect, useState } from "react";
 
-    // useEffect(() => {
-    //     if (!isLoading && !isAuthenticated) {
-    //         router.push("/login");
-    //     }
-    // }, [isAuthenticated, router]);
+export default function ProfilePage() {
+    const { getUser } = useKindeAuth();
+    const [user, setUser] = useState(null);
+
+    useEffect(() => {
+        async function fetchUser() {
+            const fetchedUser = await getUser();
+            setUser(fetchedUser);
+        }
+        fetchUser();
+    }, [getUser]);
+
+    if (!user) {
+        return <div>Loading...</div>;
+    }
 
     return (
         <div className="min-h-screen flex items-center justify-center bg-gray-50">
