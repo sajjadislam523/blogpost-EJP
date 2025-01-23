@@ -1,3 +1,4 @@
+import Footer from "@/components/Footer.jsx";
 import Navbar from "@/components/Navbar";
 import { AuthProvider } from "./AuthProvider.jsx";
 import "./globals.css";
@@ -14,6 +15,7 @@ export default function RootLayout({ children }) {
                 <body>
                     <Navbar />
                     <main>{children}</main>
+                    <Footer />
                 </body>
             </html>
         </AuthProvider>
