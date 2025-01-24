@@ -2,7 +2,12 @@
 
 import DropdownMenu from "@/components/DropdownMenu";
 import { Button } from "@/components/ui/button";
-import { useKindeAuth } from "@kinde-oss/kinde-auth-nextjs";
+import {
+    LoginLink,
+    LogoutLink,
+    RegisterLink,
+    useKindeAuth,
+} from "@kinde-oss/kinde-auth-nextjs";
 import Link from "next/link.js";
 import { useEffect, useState } from "react";
 
@@ -42,7 +47,7 @@ function Navbar() {
                             </li>
                             <li>
                                 <Button className="rounded-full">
-                                    <Link href="/api/auth/logout">Logout</Link>
+                                    <LogoutLink>Logout</LogoutLink>
                                 </Button>
                             </li>
                         </>
@@ -50,14 +55,12 @@ function Navbar() {
                         <>
                             <li>
                                 <Button className="rounded-full">
-                                    <Link href="/api/auth/login">Login</Link>
+                                    <LoginLink>Login</LoginLink>
                                 </Button>
                             </li>
                             <li>
                                 <Button className="rounded-full">
-                                    <Link href="/api/auth/register">
-                                        Register
-                                    </Link>
+                                    <RegisterLink>Register</RegisterLink>
                                 </Button>
                             </li>
                         </>
