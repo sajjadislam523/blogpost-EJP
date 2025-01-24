@@ -1,49 +1,11 @@
-"use client";
+import { getKindeServerSession } from "@kinde-oss/kinde-auth-nextjs/server";
+import { redirect } from "next/navigation";
 
-import { LoginLink, useKindeAuth } from "@kinde-oss/kinde-auth-nextjs";
-import { useEffect, useState } from "react";
-import Loading from "../../components/Loading.jsx";
-import { Button } from "../../components/ui/button.jsx";
+export default async function ProfilePage() {
+    const { user, isAuthenticated } = getKindeServerSession();
 
-export default function ProfilePage() {
-    const { getUser } = useKindeAuth();
-    const [user, setUser] = useState(null);
-    const [loading, setLoading] = useState(true);
-
-    useEffect(() => {
-        async function fetchUser() {
-            try {
-                const fetchedUser = await getUser();
-                setUser(fetchedUser);
-            } catch (err) {
-                console.error("Error fetching user:", err.message);
-            } finally {
-                setLoading(false);
-            }
-        }
-        fetchUser();
-    }, [getUser]);
-
-    if (loading) {
-        return <Loading />;
-    }
-
-    if (!loading && !user) {
-        return (
-            <div className="min-h-screen container mx-auto flex items-center justify-center px-2">
-                <div className="p-8 rounded-lg shadow-lg bg-white">
-                    <h1 className="text-xl md:text-2xl font-bold mb-4">
-                        You are not logged in!
-                    </h1>
-                    <p className="text-gray-600 mb-4 text-sm md:text-base">
-                        Please log in to access your profile.
-                    </p>
-                    <LoginLink>
-                        <Button className="rounded-full">Login</Button>
-                    </LoginLink>
-                </div>
-            </div>
-        );
+    if (!(await isAuthenticated())) {
+        redirect("/api/auth/login");
     }
 
     return (
